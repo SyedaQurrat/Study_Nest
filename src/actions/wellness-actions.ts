@@ -18,6 +18,7 @@ import { revalidatePath } from 'next/cache';
 import type { WellnessLog, WellnessLogFormValues, WellnessLogInServer } from '@/lib/types';
 import { generatePersonalizedWellnessPlan } from '@/ai/flows/generate-personalized-wellness-plan';
 import { analyzeMoodAndProvideCopingStrategies } from '@/ai/flows/analyze-mood-coping-strategies';
+import { getPersonalizedHealthTips } from '@/ai/flows/personalized-health-tips';
 import {format} from 'date-fns';
 
 export async function getWellnessData() {
@@ -67,6 +68,33 @@ export async function addOrUpdateWellnessLog(
   }
 
   revalidatePath('/dashboard');
+
+  // Only generate a tip for new logs
+  if (!logId) {
+    try {
+      const userDocQuery = query(collection(db, 'users'), where('uid', '==', user.uid), limit(1));
+      const userDocSnapshot = await getDocs(userDocQuery);
+
+      if (!userDocSnapshot.empty) {
+        const userProfile = userDocSnapshot.docs[0].data();
+        const tip = await getPersonalizedHealthTips({
+          sleepHours: data.sleepHours,
+          waterIntake: data.waterIntake,
+          mood: data.mood,
+          wellnessGoal: userProfile.wellnessGoal,
+          meals: data.meals,
+          steps: data.steps,
+        });
+        return tip;
+      }
+    } catch (e) {
+      console.error("Error generating health tip:", e);
+      // Fail gracefully if AI tip generation fails
+      return null;
+    }
+  }
+
+  return null;
 }
 
 export async function deleteWellnessLog(logId: string) {

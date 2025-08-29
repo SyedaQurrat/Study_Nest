@@ -27,7 +27,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Calendar } from '@/components/ui/calendar';
-import { CalendarIcon } from 'lucide-react';
+import { CalendarIcon, Sparkles } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -94,8 +94,17 @@ export function WellnessLogForm({ isOpen, onClose, log }: WellnessLogFormProps) 
   const onSubmit = async (values: WellnessLogFormValues) => {
     setIsLoading(true);
     try {
-      await addOrUpdateWellnessLog(values, log?.id);
-      toast({ title: `Log ${log ? 'updated' : 'added'} successfully!` });
+      const result = await addOrUpdateWellnessLog(values, log?.id);
+      toast({
+        title: `Log ${log ? 'updated' : 'added'} successfully!`,
+        description: result?.healthTip ? (
+          <div className="flex items-start gap-2 pt-1">
+            <Sparkles className="h-5 w-5 flex-shrink-0 text-primary" />
+            <p className="font-medium">{result.healthTip}</p>
+          </div>
+        ) : undefined,
+        duration: 9000,
+      });
       onClose();
     } catch (error) {
       toast({ variant: 'destructive', title: 'Something went wrong.' });
