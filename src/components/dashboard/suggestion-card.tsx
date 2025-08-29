@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator";
-import { Lightbulb, Zap, BrainCircuit, ShieldCheck } from "lucide-react";
+import { Lightbulb, Sparkles, BrainCircuit, ShieldCheck } from "lucide-react";
 
 type SuggestionCardProps = {
   suggestions: any;
@@ -30,7 +30,7 @@ export function SuggestionCard({ suggestions, className }: SuggestionCardProps) 
     <Card className={className}>
       <CardHeader>
         <CardTitle className="flex items-center gap-2 font-headline text-2xl">
-          <Zap className="text-primary"/>
+          <Sparkles className="text-primary"/>
           Your Personalized Wellness Plan
         </CardTitle>
         <CardDescription>AI-powered suggestions just for you. Aaj ki health tip!</CardDescription>
