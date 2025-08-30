@@ -34,6 +34,9 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 const profileFormSchema = z.object({
   name: z.string().min(1, 'Name is required'),
+  guardianName: z.string().min(1, 'Guardian name is required'),
+  schoolName: z.string().min(1, 'School name is required'),
+  schoolId: z.string().min(1, 'School ID is required'),
   classLevel: z.enum(['6th', '7th', '8th', 'University']),
 });
 
@@ -48,6 +51,9 @@ export default function ProfilePage() {
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
       name: '',
+      guardianName: '',
+      schoolName: '',
+      schoolId: '',
       classLevel: '6th',
     },
   });
@@ -56,6 +62,9 @@ export default function ProfilePage() {
     if (userProfile) {
       form.reset({
         name: userProfile.name,
+        guardianName: userProfile.guardianName,
+        schoolName: userProfile.schoolName,
+        schoolId: userProfile.schoolId,
         classLevel: userProfile.classLevel,
       });
     }
@@ -108,6 +117,14 @@ export default function ProfilePage() {
                         <Skeleton className="h-4 w-24" />
                         <Skeleton className="h-10 w-full" />
                       </div>
+                       <div className="space-y-2">
+                        <Skeleton className="h-4 w-24" />
+                        <Skeleton className="h-10 w-full" />
+                      </div>
+                       <div className="space-y-2">
+                        <Skeleton className="h-4 w-24" />
+                        <Skeleton className="h-10 w-full" />
+                      </div>
                       <Skeleton className="h-10 w-32" />
                   </CardContent>
               </Card>
@@ -134,19 +151,22 @@ export default function ProfilePage() {
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Full Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Your full name" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <FormField control={form.control} name="name" render={({ field }) => (
+                  <FormItem><FormLabel>Full Name</FormLabel><FormControl><Input placeholder="Your full name" {...field} /></FormControl><FormMessage /></FormItem>
+                )} />
+                <FormField control={form.control} name="guardianName" render={({ field }) => (
+                  <FormItem><FormLabel>Guardian Name</FormLabel><FormControl><Input placeholder="Your guardian's name" {...field} /></FormControl><FormMessage /></FormItem>
+                )} />
+              </div>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <FormField control={form.control} name="schoolName" render={({ field }) => (
+                  <FormItem><FormLabel>School Name</FormLabel><FormControl><Input placeholder="Your school's name" {...field} /></FormControl><FormMessage /></FormItem>
+                )} />
+                <FormField control={form.control} name="schoolId" render={({ field }) => (
+                  <FormItem><FormLabel>School ID</FormLabel><FormControl><Input placeholder="Your school ID" {...field} /></FormControl><FormMessage /></FormItem>
+                )} />
+              </div>
               <FormField
                 control={form.control}
                 name="classLevel"

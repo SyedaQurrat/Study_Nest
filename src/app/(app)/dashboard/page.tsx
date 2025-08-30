@@ -3,7 +3,9 @@
 import { useAuth } from '@/hooks/use-auth'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import Link from 'next/link'
-import { ArrowRight, BookCopy, MessageCircle, Calculator } from 'lucide-react'
+import { ArrowRight, BookCopy, MessageCircle, Calculator, Search } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 
 export default function DashboardPage() {
   const { userProfile } = useAuth();
@@ -39,6 +41,14 @@ export default function DashboardPage() {
           You are enrolled in: <span className="font-semibold text-foreground">{userProfile?.classLevel}</span>.
           Let's get learning!
         </p>
+      </div>
+
+       <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+        <Input
+          placeholder="Search for books by name, author, etc..."
+          className="w-full rounded-full bg-muted pl-10 pr-4 py-6 text-lg"
+        />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

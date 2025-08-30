@@ -31,6 +31,9 @@ import Link from 'next/link';
 
 const formSchema = z.object({
   name: z.string().min(1, { message: 'Name is required.' }),
+  guardianName: z.string().min(1, { message: 'Guardian name is required.' }),
+  schoolName: z.string().min(1, { message: 'School name is required.' }),
+  schoolId: z.string().min(1, { message: 'School ID is required.' }),
   email: z.string().email({ message: 'Please enter a valid email.' }),
   password: z.string().min(6, { message: 'Password must be at least 6 characters.' }),
   classLevel: z.enum(['6th', '7th', '8th', 'University'], { required_error: 'Please select your class level.' }),
@@ -45,6 +48,9 @@ export function SignupForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
+      guardianName: '',
+      schoolName: '',
+      schoolId: '',
       email: '',
       password: '',
     },
@@ -60,6 +66,9 @@ export function SignupForm() {
         uid: user.uid,
         email: values.email,
         name: values.name,
+        guardianName: values.guardianName,
+        schoolName: values.schoolName,
+        schoolId: values.schoolId,
         classLevel: values.classLevel,
       });
 
@@ -83,9 +92,22 @@ export function SignupForm() {
     <div className="grid gap-6">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <FormField control={form.control} name="name" render={({ field }) => (
-            <FormItem><FormLabel>Full Name</FormLabel><FormControl><Input placeholder="John Doe" {...field} /></FormControl><FormMessage /></FormItem>
-          )} />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <FormField control={form.control} name="name" render={({ field }) => (
+              <FormItem><FormLabel>Full Name</FormLabel><FormControl><Input placeholder="John Doe" {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+            <FormField control={form.control} name="guardianName" render={({ field }) => (
+              <FormItem><FormLabel>Guardian Name</FormLabel><FormControl><Input placeholder="Guardian's name" {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+          </div>
+           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <FormField control={form.control} name="schoolName" render={({ field }) => (
+              <FormItem><FormLabel>School Name</FormLabel><FormControl><Input placeholder="Your school's name" {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+            <FormField control={form.control} name="schoolId" render={({ field }) => (
+              <FormItem><FormLabel>School ID</FormLabel><FormControl><Input placeholder="Your school ID" {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+          </div>
           <FormField control={form.control} name="email" render={({ field }) => (
             <FormItem><FormLabel>Email</FormLabel><FormControl><Input placeholder="name@example.com" {...field} /></FormControl><FormMessage /></FormItem>
           )} />
