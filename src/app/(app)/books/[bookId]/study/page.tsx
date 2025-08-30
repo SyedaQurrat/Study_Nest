@@ -2,7 +2,7 @@ import { ChatInterface } from "@/components/chatbot/chat-interface";
 import { Calculator } from "@/components/calculator/calculator";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Bot, CalculatorIcon, Book, Microscope } from "lucide-react";
-import { sampleBooks } from "../../../../../lib/book-data";
+import { sampleBooks } from "../../../lib/book-data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
