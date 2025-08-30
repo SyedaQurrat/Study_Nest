@@ -19,7 +19,7 @@ export default function BooksPage() {
 
       <div className="flex flex-col gap-6">
         {sampleBooks.map((book) => (
-          <Card key={book.id} className="overflow-hidden transition-all hover:shadow-md">
+          <Card key={book.id} className="overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-[1.02]">
             <div className="flex flex-col md:flex-row">
               {/* Image Section */}
               <div className="flex-shrink-0">

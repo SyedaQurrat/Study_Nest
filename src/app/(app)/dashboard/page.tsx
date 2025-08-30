@@ -44,26 +44,26 @@ export default function DashboardPage() {
       </div>
 
        <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
         <Input
-          placeholder="Search for books by name, author, etc..."
-          className="w-full rounded-full bg-muted pl-10 pr-4 py-6 text-lg"
+          placeholder="Search for books, subjects, or anything..."
+          className="w-full rounded-full bg-card py-6 pl-12 pr-4 text-base"
         />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {quickLinks.map((link) => (
-           <Card key={link.href} className="group transition-all hover:shadow-md hover:-translate-y-1">
+           <Card key={link.href} className="group transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2">
             <Link href={link.href} className="block h-full">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-lg font-medium">{link.title}</CardTitle>
-                <link.icon className="h-5 w-5 text-muted-foreground" />
+                <link.icon className="h-5 w-5 text-muted-foreground transition-transform duration-300 group-hover:scale-125" />
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">{link.description}</p>
-                <div className="mt-4 flex items-center text-sm font-semibold text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                <div className="mt-4 flex items-center text-sm font-semibold text-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <span>Go to {link.title.split(' ')[0]}</span>
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </div>
               </CardContent>
             </Link>
