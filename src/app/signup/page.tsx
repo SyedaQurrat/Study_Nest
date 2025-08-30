@@ -17,7 +17,7 @@ export default function SignupPage() {
             <Logo />
           </div>
           <CardTitle className="text-2xl font-bold tracking-tight">
-            Create Your EduMate Account
+            Create Your StudyNest Account
           </CardTitle>
           <CardDescription>
             Join our community of learners and unlock your potential.

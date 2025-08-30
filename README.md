@@ -1,6 +1,6 @@
-# EduMate - Your AI-Powered Study Companion
+# StudyNest - Your AI-Powered Study Companion
 
-Welcome to EduMate! This is a Next.js application built with Firebase, designed to be an AI-powered study companion for students.
+Welcome to StudyNest! This is a Next.js application built with Firebase, designed to be an AI-powered study companion for students.
 
 ## Features
 
@@ -26,7 +26,7 @@ Follow these steps to get the development environment running.
 1.  **Clone the repository:**
     ```bash
     git clone <repository-url>
-    cd edumate
+    cd studynest
     ```
 
 2.  **Install dependencies:**

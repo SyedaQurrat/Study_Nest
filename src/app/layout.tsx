@@ -5,7 +5,7 @@ import { AuthProvider } from '@/providers/auth-provider';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'EduMate',
+  title: 'StudyNest',
   description: 'Your AI-powered study companion.',
 };
 

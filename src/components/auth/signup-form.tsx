@@ -64,7 +64,7 @@ export function SignupForm() {
 
       toast({
         title: 'Account created!',
-        description: "Welcome to EduMate! Let's get started.",
+        description: "Welcome to StudyNest! Let's get started.",
       });
       router.push('/dashboard');
     } catch (error: any) {

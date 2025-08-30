@@ -17,7 +17,7 @@ export default function LoginPage() {
             <Logo />
           </div>
           <CardTitle className="text-2xl font-bold tracking-tight">
-            Welcome Back to EduMate
+            Welcome Back to StudyNest
           </CardTitle>
           <CardDescription>
             Log in to access your dashboard and continue learning.
