@@ -3,7 +3,7 @@ import { Logo } from '@/components/logo';
 
 export function Footer() {
   const footerLinks = [
-    { name: 'About', href: '#' },
+    { name: 'About', href: '/about' },
     { name: 'Contact', href: '#' },
     { name: 'Privacy Policy', href: '#' },
     { name: 'Terms of Service', href: '#' },
