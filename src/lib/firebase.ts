@@ -19,8 +19,12 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // Initialize Analytics only in the browser
-if (typeof window !== 'undefined') {
-  getAnalytics(app);
+if (typeof window !== 'undefined' && firebaseConfig.measurementId) {
+  try {
+    getAnalytics(app);
+  } catch (error) {
+    console.error("Failed to initialize Analytics", error);
+  }
 }
 
 
