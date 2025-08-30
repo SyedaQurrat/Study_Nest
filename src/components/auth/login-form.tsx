@@ -44,7 +44,7 @@ export function LoginForm() {
       await signInWithEmailAndPassword(auth, values.email, values.password);
       toast({
         title: 'Login successful',
-        description: "Welcome back to WellNest!",
+        description: "Welcome back to EduMate!",
       });
       router.push('/dashboard');
     } catch (error: any) {

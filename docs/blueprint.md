@@ -1,17 +1,17 @@
-# **App Name**: WellNest
+# **App Name**: EduMate
 
 ## Core Features:
 
-- User Authentication: Implement user login and signup functionality using Firebase Authentication.
-- Daily Wellness Log: Allow users to log their daily wellness activities, including sleep hours, water intake, meals, mood, and steps.
-- AI Health Tips: Provide simple, rule-based health tips based on the user's daily log data. Use an AI tool.
-- Dashboard: Display the user's past wellness logs in a dashboard with charts and visualizations.
-- Deployment: Configure the project for deployment on Firebase Hosting.
+- User Authentication: Implement Firebase Authentication for student signup and login.
+- Class Selection Dashboard: A dashboard where students select their class (6th, 7th, 8th, University).
+- Books Section: Upload sample PDF books to Firebase Storage and display them to users.
+- AI Chatbot: Integrate the OpenAI API for answering student queries in math, physics, and chemistry. Use an AI tool.
+- Simple Calculator: A basic calculator page for quick mathematical operations.
 
 ## Style Guidelines:
 
-- Use a clean and calming color palette with soft greens and blues.
-- Employ a readable sans-serif font for body text and a slightly bolder font for headings.
-- Emphasize a clean and spacious layout to promote clarity and reduce visual clutter.
-- Utilize simple, line-based icons to represent various wellness activities and metrics.
-- Incorporate subtle animations for transitions and feedback to enhance the user experience.
+- Use a light, neutral color palette similar to Google Classroom to ensure readability and focus.
+- Employ a clear and legible sans-serif font for all text, prioritizing readability for educational content.
+- Maintain a clean, minimal layout with ample whitespace to avoid clutter and promote a focus on the content.
+- Use simple, intuitive icons to represent different sections and actions within the app.
+- Incorporate subtle transitions and feedback animations to enhance user experience without being distracting.

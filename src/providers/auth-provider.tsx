@@ -22,6 +22,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const userDoc = await getDoc(userDocRef);
         if (userDoc.exists()) {
           setUserProfile(userDoc.data() as UserProfile);
+        } else {
+          // If user exists in auth but not in firestore, maybe sign out
+           await auth.signOut();
         }
       } else {
         setUser(null);

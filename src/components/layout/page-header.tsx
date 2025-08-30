@@ -12,35 +12,30 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useAuth } from '@/hooks/use-auth';
 import { LogOut, User } from 'lucide-react';
-import { Logo } from '../logo';
-import Link from 'next/link';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 
-export function Header() {
+export function PageHeader() {
   const { user, userProfile, logout } = useAuth();
 
   const getInitials = (name: string) => {
     return name
       .split(' ')
       .map((n) => n[0])
-      .join('');
+      .join('')
+      .toUpperCase();
   };
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur md:px-6">
-      <nav className="flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-        <Link
-          href="/dashboard"
-          className="flex items-center gap-2 text-lg font-semibold md:text-base"
-        >
-          <Logo />
-        </Link>
-      </nav>
+    <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur md:px-6">
+      <div className="md:hidden">
+        <SidebarTrigger />
+      </div>
       <div className="ml-auto flex items-center gap-4">
         {user && userProfile && (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="rounded-full">
-                <Avatar>
+                <Avatar className="h-8 w-8">
                   <AvatarImage src={`https://avatar.vercel.sh/${user.uid}.png`} alt={userProfile.name} />
                   <AvatarFallback>
                     {getInitials(userProfile.name)}

@@ -29,12 +29,10 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 const formSchema = z.object({
+  name: z.string().min(1, { message: 'Name is required.' }),
   email: z.string().email({ message: 'Please enter a valid email.' }),
   password: z.string().min(6, { message: 'Password must be at least 6 characters.' }),
-  name: z.string().min(1, { message: 'Name is required.' }),
-  age: z.coerce.number().min(1, { message: 'Age is required.' }),
-  gender: z.enum(['Male', 'Female', 'Other']),
-  wellnessGoal: z.string().min(1, { message: 'Wellness goal is required.' }),
+  classLevel: z.enum(['6th', '7th', '8th', 'University'], { required_error: 'Please select your class level.' }),
 });
 
 export function SignupForm() {
@@ -45,11 +43,9 @@ export function SignupForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      name: '',
       email: '',
       password: '',
-      name: '',
-      age: undefined,
-      wellnessGoal: '',
     },
   });
 
@@ -63,14 +59,12 @@ export function SignupForm() {
         uid: user.uid,
         email: values.email,
         name: values.name,
-        age: values.age,
-        gender: values.gender,
-        wellnessGoal: values.wellnessGoal,
+        classLevel: values.classLevel,
       });
 
       toast({
         title: 'Account created!',
-        description: "Welcome to WellNest! Let's get started.",
+        description: "Welcome to EduMate! Let's get started.",
       });
       router.push('/dashboard');
     } catch (error: any) {
@@ -88,33 +82,28 @@ export function SignupForm() {
     <div className="grid gap-6">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <FormField control={form.control} name="name" render={({ field }) => (
-              <FormItem><FormLabel>Full Name</FormLabel><FormControl><Input placeholder="John Doe" {...field} /></FormControl><FormMessage /></FormItem>
-            )} />
-            <FormField control={form.control} name="age" render={({ field }) => (
-              <FormItem><FormLabel>Age</FormLabel><FormControl><Input type="number" placeholder="25" {...field} /></FormControl><FormMessage /></FormItem>
-            )} />
-          </div>
+          <FormField control={form.control} name="name" render={({ field }) => (
+            <FormItem><FormLabel>Full Name</FormLabel><FormControl><Input placeholder="John Doe" {...field} /></FormControl><FormMessage /></FormItem>
+          )} />
           <FormField control={form.control} name="email" render={({ field }) => (
             <FormItem><FormLabel>Email</FormLabel><FormControl><Input placeholder="name@example.com" {...field} /></FormControl><FormMessage /></FormItem>
           )} />
           <FormField control={form.control} name="password" render={({ field }) => (
             <FormItem><FormLabel>Password</FormLabel><FormControl><Input type="password" placeholder="••••••••" {...field} /></FormControl><FormMessage /></FormItem>
           )} />
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <FormField control={form.control} name="gender" render={({ field }) => (
-              <FormItem><FormLabel>Gender</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl><SelectTrigger><SelectValue placeholder="Select gender" /></SelectTrigger></FormControl>
-                  <SelectContent><SelectItem value="Male">Male</SelectItem><SelectItem value="Female">Female</SelectItem><SelectItem value="Other">Other</SelectItem></SelectContent>
-                </Select><FormMessage />
-              </FormItem>
-            )} />
-            <FormField control={form.control} name="wellnessGoal" render={({ field }) => (
-              <FormItem><FormLabel>Wellness Goal</FormLabel><FormControl><Input placeholder="e.g., more energy" {...field} /></FormControl><FormMessage /></FormItem>
-            )} />
-          </div>
+          <FormField control={form.control} name="classLevel" render={({ field }) => (
+            <FormItem><FormLabel>Class Level</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl><SelectTrigger><SelectValue placeholder="Select your class level" /></SelectTrigger></FormControl>
+                <SelectContent>
+                  <SelectItem value="6th">6th Grade</SelectItem>
+                  <SelectItem value="7th">7th Grade</SelectItem>
+                  <SelectItem value="8th">8th Grade</SelectItem>
+                  <SelectItem value="University">University</SelectItem>
+                </SelectContent>
+              </Select><FormMessage />
+            </FormItem>
+          )} />
           <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? 'Creating Account...' : 'Create Account'}
           </Button>
