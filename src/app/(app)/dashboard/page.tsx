@@ -10,27 +10,6 @@ import { Button } from '@/components/ui/button'
 export default function DashboardPage() {
   const { userProfile } = useAuth();
 
-  const quickLinks = [
-    {
-      title: 'Browse Books',
-      description: 'Find textbooks and materials for your class.',
-      href: '/books',
-      icon: BookCopy,
-    },
-    {
-      title: 'AI Chatbot',
-      description: 'Get instant help with your questions.',
-      href: '/chatbot',
-      icon: MessageCircle,
-    },
-    {
-      title: 'Calculator',
-      description: 'Solve complex equations with ease.',
-      href: '/calculator',
-      icon: Calculator,
-    },
-  ];
-
   return (
     <div className="space-y-8">
       <div>
@@ -38,38 +17,39 @@ export default function DashboardPage() {
           Welcome back, {userProfile?.name?.split(' ')[0] || 'Student'}!
         </h1>
         <p className="text-muted-foreground">
-          You are enrolled in: <span className="font-semibold text-foreground">{userProfile?.classLevel}</span>.
-          Let's get learning!
+          Find your books and start learning.
         </p>
       </div>
 
-       <div className="relative">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-        <Input
-          placeholder="Search for books, subjects, or anything..."
-          className="w-full rounded-full bg-card py-6 pl-12 pr-4 text-base"
-        />
-      </div>
+       <Card>
+        <CardHeader>
+          <CardTitle>Search for a Book</CardTitle>
+          <CardDescription>Find books by title, author, or publish date.</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+             <Input
+                placeholder="Book Name..."
+                className="w-full bg-card text-base"
+              />
+               <Input
+                placeholder="Author Name..."
+                className="w-full bg-card text-base"
+              />
+               <Input
+                placeholder="Publish Date..."
+                className="w-full bg-card text-base"
+              />
+          </div>
+           <div className="flex justify-end">
+            <Button>
+                <Search className="mr-2 h-4 w-4" />
+                Search
+            </Button>
+           </div>
+        </CardContent>
+       </Card>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {quickLinks.map((link) => (
-           <Card key={link.href} className="group transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2">
-            <Link href={link.href} className="block h-full">
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-lg font-medium">{link.title}</CardTitle>
-                <link.icon className="h-5 w-5 text-muted-foreground transition-transform duration-300 group-hover:scale-125" />
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">{link.description}</p>
-                <div className="mt-4 flex items-center text-sm font-semibold text-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <span>Go to {link.title.split(' ')[0]}</span>
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </div>
-              </CardContent>
-            </Link>
-          </Card>
-        ))}
-      </div>
     </div>
   )
 }
