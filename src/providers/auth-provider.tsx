@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect, type ReactNode, useCallback } from 'react';
 import { onAuthStateChanged, type User } from 'firebase/auth';
-import { doc, getDoc, onSnapshot } from 'firebase/firestore';
+import { doc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from '@/lib/firebase';
 import type { UserProfile } from '@/lib/types';
 import { AuthContext } from '@/context/auth-context';
@@ -46,10 +46,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => unsubscribe();
   }, []);
 
-  const logout = async () => {
+  const logout = useCallback(async () => {
     await auth.signOut();
     router.push('/login');
-  };
+  }, [router]);
 
   const value = {
     user,
