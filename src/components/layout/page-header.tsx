@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -13,6 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useAuth } from '@/hooks/use-auth';
 import { LogOut, User } from 'lucide-react';
 import { SidebarTrigger } from '@/components/ui/sidebar';
+import Link from 'next/link';
 
 export function PageHeader() {
   const { user, userProfile, logout } = useAuth();
@@ -51,9 +53,11 @@ export function PageHeader() {
                 </p>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem disabled>
-                <User className="mr-2 h-4 w-4" />
-                <span>Profile</span>
+              <DropdownMenuItem asChild>
+                <Link href="/profile">
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Profile</span>
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={logout}>

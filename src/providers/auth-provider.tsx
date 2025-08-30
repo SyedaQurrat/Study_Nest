@@ -1,8 +1,9 @@
+
 'use client';
 
-import React, { useState, useEffect, type ReactNode } from 'react';
+import React, { useState, useEffect, type ReactNode, useCallback } from 'react';
 import { onAuthStateChanged, type User } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from '@/lib/firebase';
 import type { UserProfile } from '@/lib/types';
 import { AuthContext } from '@/context/auth-context';
@@ -19,17 +20,29 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (user) {
         setUser(user);
         const userDocRef = doc(db, 'users', user.uid);
-        const userDoc = await getDoc(userDocRef);
-        if (userDoc.exists()) {
-          setUserProfile(userDoc.data() as UserProfile);
-        }
+        
+        // Use onSnapshot for real-time updates
+        const unsubProfile = onSnapshot(userDocRef, (doc) => {
+            if (doc.exists()) {
+                setUserProfile(doc.data() as UserProfile);
+            } else {
+                // This case can happen if a user is authenticated but their profile doc is deleted
+                setUserProfile(null);
+            }
+            setLoading(false);
+        });
+
+        // Cleanup profile listener on unmount
+        return () => unsubProfile();
+
       } else {
         setUser(null);
         setUserProfile(null);
+        setLoading(false);
       }
-      setLoading(false);
     });
 
+    // Cleanup auth listener on unmount
     return () => unsubscribe();
   }, []);
 

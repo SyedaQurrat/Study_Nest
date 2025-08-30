@@ -1,3 +1,4 @@
+
 'use client';
 import type { ReactNode } from 'react';
 import Link from 'next/link';
@@ -15,7 +16,7 @@ import {
 } from '@/components/ui/sidebar';
 import { Logo } from '@/components/logo';
 import { PageHeader } from './page-header';
-import { LayoutDashboard, BookCopy, MessageCircle, Calculator, LogOut } from 'lucide-react';
+import { LayoutDashboard, BookCopy, MessageCircle, Calculator, User, LogOut } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { Button } from '../ui/button';
 
@@ -28,6 +29,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     { href: '/books', label: 'Books', icon: BookCopy },
     { href: '/chatbot', label: 'AI Chatbot', icon: MessageCircle },
     { href: '/calculator', label: 'Calculator', icon: Calculator },
+    { href: '/profile', label: 'Profile', icon: User },
   ];
 
   return (
