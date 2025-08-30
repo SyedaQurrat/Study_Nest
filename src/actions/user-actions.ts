@@ -12,5 +12,5 @@ export async function updateUserProfile(uid: string, data: UpdateData) {
     throw new Error('User is not authenticated.');
   }
   const userDocRef = doc(db, 'users', uid);
-  await updateDoc(userDocRef, data);
+  await updateDoc(userDocRef, { ...data });
 }
