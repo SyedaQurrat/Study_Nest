@@ -42,7 +42,7 @@ export function Hero() {
 
   return (
     <section ref={root} className="relative h-[60vh] min-h-[400px] overflow-hidden text-white sm:h-[80vh] sm:min-h-[600px]">
-       <div className="absolute inset-0 z-[-1] bg-black">
+       <div className="absolute inset-0 z-[-1]">
         <Image
           src="https://picsum.photos/1600/900"
           alt="Students studying together"
@@ -51,14 +51,14 @@ export function Hero() {
           data-ai-hint="happy students learning"
           className="hero-bg scale-110 object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
       </div>
-      <div className="container mx-auto flex h-full flex-col items-center justify-center px-4 text-center">
+      <div className="container relative z-10 mx-auto flex h-full flex-col items-center justify-center px-4 text-center">
         <div className="hero-content">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
             StudyNest
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-blue-100 sm:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-200 sm:text-xl">
             One App for All Your Studies. Your complete learning companion for
             success in Pakistan.
           </p>
