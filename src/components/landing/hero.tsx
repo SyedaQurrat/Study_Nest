@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import Image from 'next/image';
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
@@ -15,11 +14,6 @@ export function Hero() {
     const ctx = gsap.context(() => {
       tl.current = gsap
         .timeline()
-        .to('.hero-bg', {
-          scale: 1,
-          duration: 1.5,
-          ease: 'power3.inOut',
-        })
         .fromTo(
           '.hero-content > *',
           {
@@ -32,8 +26,7 @@ export function Hero() {
             duration: 1,
             stagger: 0.2,
             ease: 'power3.out',
-          },
-          '-=1'
+          }
         );
     }, root);
 
@@ -41,18 +34,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section ref={root} className="relative h-[60vh] min-h-[400px] overflow-hidden text-white sm:h-[80vh] sm:min-h-[600px]">
-       <div className="absolute inset-0 z-[-1]">
-        <Image
-          src="https://picsum.photos/1600/900"
-          alt="Students studying together"
-          fill
-          priority
-          data-ai-hint="happy students learning"
-          className="hero-bg scale-110 object-cover opacity-40"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-      </div>
+    <section ref={root} className="relative h-[60vh] min-h-[400px] overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 text-white sm:h-[80vh] sm:min-h-[600px]">
       <div className="container relative z-10 mx-auto flex h-full flex-col items-center justify-center px-4 text-center">
         <div className="hero-content">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
