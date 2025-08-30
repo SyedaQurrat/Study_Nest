@@ -108,7 +108,7 @@ export default function ProfilePage() {
                       <Skeleton className="h-6 w-32 mb-1" />
                       <Skeleton className="h-4 w-64" />
                   </CardHeader>
-                  <CardContent className="space-y-6">
+                  <CardContent className="space-y-6 pt-6">
                       <div className="space-y-2">
                         <Skeleton className="h-4 w-24" />
                         <Skeleton className="h-10 w-full" />
