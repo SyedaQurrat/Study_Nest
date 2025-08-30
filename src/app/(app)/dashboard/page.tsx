@@ -36,7 +36,7 @@ export default function DashboardPage() {
           Welcome back, {userProfile?.name?.split(' ')[0] || 'Student'}!
         </h1>
         <p className="text-muted-foreground">
-          You are enrolled in: <span className="font-semibold text-foreground">{userProfile?.classLevel} Grade</span>.
+          You are enrolled in: <span className="font-semibold text-foreground">{userProfile?.classLevel}</span>.
           Let's get learning!
         </p>
       </div>
