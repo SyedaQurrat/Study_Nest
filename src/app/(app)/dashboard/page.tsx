@@ -15,7 +15,7 @@ type Book = typeof sampleBooks[0];
 
 export default function DashboardPage() {
   const { userProfile } = useAuth();
-  const [searchQuery, setSearchQuery] = useState({ title: '', author: '', subject: '' });
+  const [searchQuery, setSearchQuery] = useState({ title: '', subject: '' });
   const [searchResults, setSearchResults] = useState<Book[]>([]);
   const [searched, setSearched] = useState(false);
 
@@ -25,10 +25,10 @@ export default function DashboardPage() {
   };
 
   const handleSearch = () => {
-    const { title, author, subject } = searchQuery;
+    const { title, subject } = searchQuery;
     const filteredBooks = sampleBooks.filter(book => 
       book.title.toLowerCase().includes(title.toLowerCase()) &&
-      book.subject.toLowerCase().includes(subject.toLowerCase()) // Assuming author is in description for now
+      book.subject.toLowerCase().includes(subject.toLowerCase())
     );
     setSearchResults(filteredBooks);
     setSearched(true);
@@ -48,21 +48,14 @@ export default function DashboardPage() {
        <Card className="transition-shadow duration-300 hover:shadow-xl">
         <CardHeader>
           <CardTitle>Search for a Book</CardTitle>
-          <CardDescription>Find books by title, subject, or author.</CardDescription>
+          <CardDescription>Find books by title or subject.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
              <Input
                 name="title"
                 placeholder="Book Name..."
                 value={searchQuery.title}
-                onChange={handleInputChange}
-                className="w-full bg-background text-base"
-              />
-               <Input
-                name="author"
-                placeholder="Author Name..."
-                value={searchQuery.author}
                 onChange={handleInputChange}
                 className="w-full bg-background text-base"
               />
