@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { Download } from "lucide-react";
+import { BookOpenCheck } from "lucide-react";
+import Link from "next/link";
 
 // In a real application, this data would be fetched from Firestore,
 // with links pointing to PDFs in Firebase Storage.
@@ -46,7 +47,7 @@ export default function BooksPage() {
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Books Library</h1>
         <p className="text-muted-foreground">
-          Find your course materials and start reading.
+          Find your course materials and start your study session.
         </p>
       </div>
 
@@ -67,10 +68,10 @@ export default function BooksPage() {
               <CardTitle className="text-lg font-semibold">{book.title}</CardTitle>
               <CardDescription className="mt-1 flex-1 text-sm">{book.description}</CardDescription>
               <Button asChild className="mt-4 w-full">
-                <a href={book.pdfUrl} target="_blank" rel="noopener noreferrer">
-                  <Download className="mr-2" />
-                  Read PDF
-                </a>
+                <Link href={`/books/${book.id}/study`}>
+                  <BookOpenCheck className="mr-2" />
+                  Start Studying
+                </Link>
               </Button>
             </CardContent>
           </Card>

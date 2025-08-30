@@ -19,7 +19,7 @@ export function ChatInterface() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const scrollAreaViewport = useRef<HTMLDivElement>(null);
   const { user, userProfile } = useAuth();
 
   const getInitials = (name?: string | null) => {
@@ -28,9 +28,9 @@ export function ChatInterface() {
   };
 
   useEffect(() => {
-    if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTo({
-        top: scrollAreaRef.current.scrollHeight,
+    if (scrollAreaViewport.current) {
+      scrollAreaViewport.current.scrollTo({
+        top: scrollAreaViewport.current.scrollHeight,
         behavior: 'smooth',
       });
     }
@@ -62,9 +62,9 @@ export function ChatInterface() {
   };
 
   return (
-    <div className="flex h-full flex-grow flex-col rounded-lg border bg-card">
-      <ScrollArea className="flex-grow p-4" ref={scrollAreaRef}>
-        <div className="space-y-6">
+    <div className="flex h-full flex-grow flex-col">
+      <ScrollArea className="flex-grow" viewportRef={scrollAreaViewport}>
+        <div className="space-y-6 pr-4">
           {messages.map((message) => (
             <div
               key={message.id}
@@ -112,12 +112,12 @@ export function ChatInterface() {
           )}
         </div>
       </ScrollArea>
-      <div className="border-t p-4">
+      <div className="mt-4">
         <form onSubmit={handleSubmit} className="flex items-center gap-2">
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about math, physics, or chemistry..."
+            placeholder="Ask about your book..."
             className="flex-grow"
             disabled={isLoading}
           />
