@@ -11,6 +11,7 @@ export function Header() {
     { name: 'Comparison', href: '#comparison' },
     { name: 'Testimonials', href: '#testimonials' },
     { name: 'About', href: '/about' },
+    { name: 'Blog', href: '#' },
   ];
 
   return (
