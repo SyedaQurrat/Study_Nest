@@ -1,7 +1,7 @@
 import { initializeApp, getApps, getApp, type FirebaseApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import { getAnalytics } from "firebase/analytics";
+// import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDN3iiVX4O0QTR6VG8SuGPxzWeol2xI634",
@@ -25,12 +25,12 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // Initialize Analytics only in the browser
-if (typeof window !== 'undefined' && firebaseConfig.measurementId) {
-  try {
-    getAnalytics(app);
-  } catch (error) {
-    console.error("Failed to initialize Analytics", error);
-  }
-}
+// if (typeof window !== 'undefined' && firebaseConfig.measurementId) {
+//   try {
+//     getAnalytics(app);
+//   } catch (error) {
+//     console.error("Failed to initialize Analytics", error);
+//   }
+// }
 
 export { app, auth, db };
