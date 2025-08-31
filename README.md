@@ -31,7 +31,7 @@ Follow these steps to get the development environment running.
 
 2.  **Install dependencies:**
     ```bash
-    pnpm install
+    npm install
     ```
 
 3.  **Set up environment variables:**
@@ -43,7 +43,7 @@ Follow these steps to get the development environment running.
 
 4.  **Run the development server:**
     ```bash
-    pnpm dev
+    npm dev
     ```
 
     The application will be available at `http://localhost:9002`.
@@ -52,11 +52,11 @@ Follow these steps to get the development environment running.
 
 In the project directory, you can run:
 
-- `pnpm dev`: Runs the Next.js app in development mode.
-- `pnpm build`: Builds the app for production.
-- `pnpm start`: Starts a Next.js production server.
-- `pnpm lint`: Runs ESLint to check for code quality.
-- `pnpm typecheck`: Runs the TypeScript compiler to check for type errors.
+- `npm dev`: Runs the Next.js app in development mode.
+- `npm build`: Builds the app for production.
+- `npm start`: Starts a Next.js production server.
+- `npm lint`: Runs ESLint to check for code quality.
+- `npm typecheck`: Runs the TypeScript compiler to check for type errors.
 
 ## Firebase Setup
 
