@@ -4,18 +4,17 @@
 import { useState } from 'react';
 import { useAuth } from '@/hooks/use-auth'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
-import Link from 'next/link'
-import { ArrowRight, BookCopy, MessageCircle, Calculator, Search, PlusCircle, BookOpenCheck } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { sampleBooks } from '@/lib/book-data';
 import Image from 'next/image';
+import { Search, PlusCircle } from 'lucide-react';
 
 type Book = typeof sampleBooks[0];
 
 export default function DashboardPage() {
   const { userProfile } = useAuth();
-  const [searchQuery, setSearchQuery] = useState({ title: '', subject: '' });
+  const [searchQuery, setSearchQuery] = useState({ title: '', author: '' });
   const [searchResults, setSearchResults] = useState<Book[]>([]);
   const [searched, setSearched] = useState(false);
 
@@ -25,10 +24,10 @@ export default function DashboardPage() {
   };
 
   const handleSearch = () => {
-    const { title, subject } = searchQuery;
+    const { title, author } = searchQuery;
     const filteredBooks = sampleBooks.filter(book => 
       book.title.toLowerCase().includes(title.toLowerCase()) &&
-      book.subject.toLowerCase().includes(subject.toLowerCase())
+      book.author.toLowerCase().includes(author.toLowerCase())
     );
     setSearchResults(filteredBooks);
     setSearched(true);
@@ -48,7 +47,7 @@ export default function DashboardPage() {
        <Card className="transition-shadow duration-300 hover:shadow-xl">
         <CardHeader>
           <CardTitle>Search for a Book</CardTitle>
-          <CardDescription>Find books by title or subject.</CardDescription>
+          <CardDescription>Find books by title or author.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -60,9 +59,9 @@ export default function DashboardPage() {
                 className="w-full bg-background text-base"
               />
                <Input
-                name="subject"
-                placeholder="Subject..."
-                value={searchQuery.subject}
+                name="author"
+                placeholder="Author Name..."
+                value={searchQuery.author}
                 onChange={handleInputChange}
                 className="w-full bg-background text-base"
               />
@@ -93,7 +92,7 @@ export default function DashboardPage() {
                   />
                   <CardContent className="p-4">
                     <CardTitle className="text-md font-semibold leading-snug tracking-tight">{book.title}</CardTitle>
-                    <p className="mt-1 text-sm text-primary">{book.subject}</p>
+                    <p className="mt-1 text-sm text-primary">{book.author}</p>
                     <CardDescription className="mt-2 text-xs line-clamp-2">{book.description}</CardDescription>
                     <Button className="mt-4 w-full">
                        <PlusCircle className="mr-2 h-4 w-4" />
